@@ -166,6 +166,4 @@ namespace TestTask
             return -1;
         }
     }
-
 }
-
