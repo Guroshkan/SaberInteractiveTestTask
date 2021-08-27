@@ -44,17 +44,19 @@ namespace TestTask
             };
 
             File.Delete("test.txt");
-            using Stream streamW = File.OpenWrite("test.txt");
-            listrandom.Serialize(streamW);
-
-            ListRandom listDeserialized = new ListRandom();
-            using Stream streamR = File.OpenRead("test.txt");
-            listDeserialized.Deserialize(streamR);
+            using (Stream streamW = File.OpenWrite("test.txt")) 
+                listrandom.Serialize(streamW);
             
-            if(!listrandom.Equals(listDeserialized))
+            ListRandom listDeserialized = new ListRandom();
+            using (Stream streamR = File.OpenRead("test.txt"))
+                listDeserialized.Deserialize(streamR);
+
+            if (!listrandom.Equals(listDeserialized))
             {
-                Console.WriteLine("List not equals");
+                Console.WriteLine("Lists do not match!");
             }
+            else
+                Console.WriteLine("Lists match!");
         }
     }
 }
